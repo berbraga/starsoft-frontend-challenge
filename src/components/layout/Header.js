@@ -4,12 +4,6 @@ import Image from "next/image";
 // import { useCart } from "@/context/CartContext";
 
 
-
-
-
-
-
-
 export default function Header({ cartItemCount }) {
   //  const { cart } = useCart(); 
   // const totalItems = cart.reduce((acc, product) => acc + product.quantity, 0);
