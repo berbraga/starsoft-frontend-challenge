@@ -1,7 +1,24 @@
 import Image from "next/image";
 import Button from "./Button";
+import { useCart } from "@/context/CartContext"; // Importar o hook do carrinho
 
-export default function Card({ imageSrc, imageAlt, title, description, price }) {
+export default function Card({
+  imageSrc,
+  imageAlt,
+  title,
+  description,
+  price,
+}) {
+  const { addToCart } = useCart(); // Usa a função de adicionar ao carrinho
+
+  // Produto a ser adicionado ao carrinho
+  const product = {
+    id: imageSrc, // Usando `imageSrc` como ID temporário (substitua por um ID real)
+    name: title,
+    image: imageSrc,
+    price: price,
+  };
+
   return (
     <div
       className="p-4 bg-black m-4 rounded-lg flex flex-col"
@@ -16,13 +33,13 @@ export default function Card({ imageSrc, imageAlt, title, description, price }) 
         priority
       />
 
-      <div className="flex-grow mt-4 ">
+      <div className="flex-grow mt-4">
         <h1 className="text-xl font-bold text-white">{title}</h1>
         <p className="text-white mt-4 text-sm">{description}</p>
       </div>
 
-      <div className="flex justify-between">
-        <div className="mt-auto align-center flex items-center">
+      <div className="mt-auto flex justify-between items-center">
+        <div className="flex items-center">
           <Image
             src="/Ellipse 770.png"
             alt="Símbolo do ETF"
@@ -31,7 +48,11 @@ export default function Card({ imageSrc, imageAlt, title, description, price }) 
           />
           <span className="text-white ml-2">{price} ETF</span>
         </div>
-        <Button> comprar </Button>
+
+        {/* Botão Comprar */}
+        <Button color="orange" onClick={() => addToCart(product)}>
+          Comprar
+        </Button>
       </div>
     </div>
   );
