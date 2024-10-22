@@ -20,6 +20,7 @@ export default function Home() {
     try {
       setIsFetchingMore(true);
       const res = await axios.get(`https://starsoft-challenge-7dfd4a56a575.herokuapp.com/v1/products?page=${page}&limit=20`);
+      console.log(res.data.data); 
       setProducts((prevProducts) => [...prevProducts, ...res.data.data]);
       setIsLoading(false);
       setIsFetchingMore(false);
@@ -43,9 +44,6 @@ export default function Home() {
 
   return (
     <div>
-      
-
-      <h1 className="text-2xl font-bold mb-6">Lista de Produtos</h1>
       <div className="flex flex-wrap">
         {products.map((product) => (
           <Card
